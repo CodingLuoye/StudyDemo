@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 映射文件，映射到对应的SQL接口 -->
+<mapper namespace="com.study.dao.OrderExpDao">
+
+	<!-- 账户和图片 结果集返回映射-->
+	<resultMap id="BaseResultMap" type="com.study.model.OrderExp">
+		<id column="ID" property="id"/>
+		<result column="order_no" property="orderNo"/>
+		<result column="order_note" property="orderNote"/>
+		<result column="insert_time" property="insertTime"/>
+		<result column="expire_duration" property="expireDuration"/>
+		<result column="expire_time" property="expireTime"/>
+		<result column="order_status" property="orderStatus"/>
+	</resultMap>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from order_exp where id = #{id}
+	</delete>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="order.id" parameterType="com.study.model.OrderExp">
+		insert into order_exp(order_no,order_note,insert_time,expire_duration,expire_time,order_status)
+		values(#{order.orderNo,jdbcType=VARCHAR},#{order.orderNote,jdbcType=VARCHAR},now(),#{order.expire_duration},
+		DATE_ADD())
+	</insert>
+
+	<insert id="insertSelective" parameterType="com.study.model.OrderExp">
+		insert into order_exp(order_no,order_note,insert_time,expire_duration,expire_time,order_status)
+		values(#{order.orderNo,jdbcType=VARCHAR},#{order.orderNote,jdbcType=VARCHAR},now(),#{order.expire_duration},
+		DATE_ADD())
+	</insert>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select * from order_ext where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.study.model.OrderExp">
+		update order_exp
+		<set>
+			<if test="orderNo !=null and orderNo !=''">order_No = #{orderNo,jdbcType=VARCHAR},</if>
+			<if test="orderNote !=null and orderNote !=''">order_Note = #{orderNote,jdbcType=VARCHAR},</if>
+			<if test="expireDuration !=null and expireDuration !=''">expire_duration = #{expireDuration,jdbcType =VARCHAR}</if>
+			<if test="expireTime !=null and expireTime !=''">expire_time = #{expireTime,jdbcType=VARCHAR},</if>
+			<if test="orderStatus !=null and orderStatus !=''">order_status = #{orderStatus,jdbcType=SMALLINT},</if>
+		</set>
+		where id = #{id,jdbcType =BIGINT}
+	</update>
+
+	<update id="updateByPrimaryKey" parameterType="com.study.model.OrderExp">
+		update order_exp
+		<set>
+			<if test="orderNo !=null and orderNo !=''">order_No = #{orderNo,jdbcType=VARCHAR},</if>
+			<if test="orderNote !=null and orderNote !=''">order_Note = #{orderNote,jdbcType=VARCHAR},</if>
+			<if test="expireDuration !=null and expireDuration !=''">expire_duration = #{expireDuration,jdbcType =VARCHAR}</if>
+			<if test="expireTime !=null and expireTime !=''">expire_time = #{expireTime,jdbcType=VARCHAR},</if>
+			<if test="orderStatus !=null and orderStatus !=''">order_status = #{orderStatus,jdbcType=SMALLINT},</if>
+		</set>
+		where id = #{id,jdbcType =BIGINT}
+	</update>
+
+
+	<insert id="inserDelayOrder">
+		insert into order_exp(order_no,order_note,insert_time,expire_duration,expire_time,order_status)
+		values(#{order.orderNo,jdbcType=VARCHAR},#{order.orderNote,jdbcType=VARCHAR},now(),#{order.expireDuration},
+		DATE_ADD(now(),INTERVAL #{expire_duration} SECOND ),#{order.orderStatus,jdbcType=SMALLINT})
+	</insert>
+
+	<update id="updateExpireOrder" parameterType="java.lang.Long">
+		update order_exp
+		set order_status = -1
+		where id = #{id,jdbcType =BIGINT}
+		and order_status = 0
+	</update>
+
+	<update id="updateExpireOrders">
+		update order_exp
+		set order_status = -1
+		where expire_teim &lt; now()
+		and order_status = 0
+	</update>
+
+	<sql id="Base_Column_List">
+		order_status
+	</sql>
+
+	<select id="selectUnPayOrders" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"></include>
+		from order_exp
+		where expire_time > now() and order_status = 0
+	</select>
+
+</mapper>

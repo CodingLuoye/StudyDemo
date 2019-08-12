@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 映射文件，映射到对应的SQL接口 -->
+<mapper namespace="com.study.dao.OrderDao">
+
+	<!-- 账户和图片 结果集返回映射-->
+	<resultMap id="BaseResultMap" type="com.study.model.Order">
+		<id column="ID" property="id"/>
+		<result column="name" property="name"/>
+		<result column="content" property="content"/>
+		<result column="create_time" property="createTime"/>
+		<result column="create_by" property="createBy"/>
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="order.id" parameterType="com.study.model.Order">
+		insert into order_msg(name,content,create_time,create_by)
+		values(#{order.name,jdbcType=VARCHAR},#{order.content,jdbcType=VARCHAR},#{order.createTime,jdbcType=VARCHAR},
+		#{order.createBy,jdbcType=VARCHAR})
+	</insert>
+
+</mapper>
