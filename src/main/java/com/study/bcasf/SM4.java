@@ -1,8 +1,11 @@
 package com.study.bcasf;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;  
- 
+import java.io.ByteArrayOutputStream;
+
+/**
+ * @author YCKJ1409
+ */
 public class SM4 {
 	 public static final int SM4_ENCRYPT = 1;  
      

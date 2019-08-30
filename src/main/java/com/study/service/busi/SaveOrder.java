@@ -59,7 +59,7 @@ public class SaveOrder {
         List<OrderExp> orderExpList = orderExpDao.selectUnPayOrders();
         logger.info("系统成功，系统种还有["+orderExpList.size()+"]个未到期未支付的订单！");
         for (OrderExp order:orderExpList) {
-            long expireTime = order.getExpireTime().getTime() -(new Date().getTime());
+            long expireTime = order.getExpireTime().getTime() -(System.currentTimeMillis());
             delayOrder.orderDelay(order,expireTime);
         }
 

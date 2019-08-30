@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author YCKJ1409
+ */
 public class SM4Utils {
 //	private String secretKey = "";  
 //    private String iv = "";  
@@ -14,8 +17,10 @@ public class SM4Utils {
       
     public String secretKey = "";
     public String iv = "";
-    public boolean hexString = false;  
-    
+    public boolean hexString = false;
+
+    private static final Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+
     public SM4Utils()  
     {  
     }  
@@ -79,7 +84,7 @@ public class SM4Utils {
             String cipherText = new BASE64Encoder().encode(encrypted);
             if (cipherText != null && cipherText.trim().length() > 0)  
             {  
-                Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+//                Pattern p = Pattern.compile("\\s*|\t|\r|\n");
                 Matcher m = p.matcher(cipherText);
                 cipherText = m.replaceAll("");  
             }  
@@ -149,7 +154,7 @@ public class SM4Utils {
             String cipherText = new BASE64Encoder().encode(encrypted);  
             if (cipherText != null && cipherText.trim().length() > 0)  
             {  
-                Pattern p = Pattern.compile("\\s*|\t|\r|\n");  
+//                Pattern p = Pattern.compile("\\s*|\t|\r|\n");
                 Matcher m = p.matcher(cipherText);  
                 cipherText = m.replaceAll("");  
             }  

@@ -44,6 +44,7 @@ public class TimingThreadPool extends ThreadPoolExecutor {
             long taskTime = endTime - startTime.get();
             numtasks.incrementAndGet();
             totalTime.addAndGet(taskTime);
+            startTime.remove();
             logger.fine(String.format("Thread %s :start %s time %dns",t,r,taskTime));
         } finally {
             super.afterExecute(r, t);

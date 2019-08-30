@@ -18,7 +18,7 @@ public class TcpServer {
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String buffer =null;
             //循环读取输入的每一行数据
-            while((buffer=reader.readLine())!=null && !buffer.equals("")){
+            while((buffer=reader.readLine())!=null && !("").equals(buffer)){
                 System.out.println(buffer);
             }
             //通过socker对象得到输出流，构造BufferedWrite对象

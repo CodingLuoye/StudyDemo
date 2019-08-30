@@ -1,5 +1,6 @@
 package com.study.servlet;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.async.DeferredResult;
@@ -11,8 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Random;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 /**
  * @author YCKJ1409
@@ -89,8 +89,10 @@ public class AsyncServletDemo {
     public String news(){
         return "pushnews";
     }
-
-    ExecutorService executorService = Executors.newFixedThreadPool(2);
+    ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("zookerCon").build();
+    ExecutorService executorService = new ThreadPoolExecutor(2,2,
+            0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(),threadFactory);
+//    ExecutorService executorService = Executors.newFixedThreadPool(2);
 
     @RequestMapping(value = "/realtimeNews")
     @ResponseBody

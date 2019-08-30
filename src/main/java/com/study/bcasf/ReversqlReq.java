@@ -1,5 +1,8 @@
 package com.study.bcasf;
 
+/**
+ * @author YCKJ1409
+ */
 public class ReversqlReq {
 
     private String transAmount;

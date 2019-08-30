@@ -1,5 +1,8 @@
 package com.study.bcasf;
 
+/**
+ * @author YCKJ1409
+ */
 public class SM4_Context {
 	public int mode;  
     

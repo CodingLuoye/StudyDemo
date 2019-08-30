@@ -6,21 +6,37 @@ package com.study.cmb;
  *
  */
 public enum CmbTxnTypeCodeEnum {
-
+    /**
+     * 支付预检查
+     */
     TXN_TYPE_CODE_00("00","支付预检查"),
-
+    /**
+     * 刷脸支付
+     */
     TXN_TYPE_CODE_01("01","刷脸支付"),
-
+    /**
+     * 小n库刷脸
+     */
     TXN_TYPE_CODE_02("02","小n库刷脸"),
-
+    /**
+     * 小n库身份确认
+     */
     TXN_TYPE_CODE_03("03","小n库身份确认"),
-
+    /**
+     * 退款
+     */
     TXN_TYPE_CODE_10("10","退款"),
-
+    /**
+     * 退款
+     */
     TXN_TYPE_CODE_20("20","退款"),
-
+    /**
+     * 单笔退款查询
+     */
     TXN_TYPE_CODE_21("21","单笔退款查询"),
-
+    /**
+     * 单笔退款查询
+     */
     TXN_TYPE_CODE_30("03","单笔退款查询");
 
     private String code;

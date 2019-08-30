@@ -62,6 +62,7 @@ public class ApiOperatorDemo implements Watcher {
 
     }
 
+    @Override
     public void process(WatchedEvent watchedEvent) {
         //如果当前的连接状态是连接成功的，那么通过计数器去控制
         if(watchedEvent.getState()== Event.KeeperState.SyncConnected){

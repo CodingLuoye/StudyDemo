@@ -1,5 +1,6 @@
 package com.study.zk.curator;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.api.BackgroundCallback;
 import org.apache.curator.framework.api.CuratorEvent;
@@ -7,9 +8,7 @@ import org.apache.curator.framework.api.transaction.CuratorTransactionResult;
 import org.apache.zookeeper.CreateMode;
 
 import java.util.Collection;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 /**
  * Curator Zookeeper 实现
@@ -73,7 +72,10 @@ public class CuratorOperatorDemo {
         /**
          * 异步操作
          */
-        ExecutorService service= Executors.newFixedThreadPool(1);
+        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("zookerCon").build();
+        ExecutorService service = new ThreadPoolExecutor(1,1,
+                0L,TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(),threadFactory);
+//        ExecutorService service= Executors.newFixedThreadPool(1);
         CountDownLatch countDownLatch=new CountDownLatch(1);
         try {
             curatorFramework.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).

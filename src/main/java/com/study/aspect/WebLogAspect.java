@@ -48,6 +48,7 @@ public class WebLogAspect {
         logger.info("RESPONSE : " + ret);
         logger.info("RESPONSE : " + ret);
         logger.info("SPEND TIME : " + (System.currentTimeMillis() - startTime.get()));
+        startTime.remove();
     }
 }
 

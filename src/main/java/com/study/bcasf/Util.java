@@ -2,6 +2,9 @@ package com.study.bcasf;
 
 import java.math.BigInteger;
 
+/**
+ * @author YCKJ1409
+ */
 public class Util {
 	 /** 
      * 整形转换成网络传输的字节流（字节数组）型数据 
@@ -166,7 +169,7 @@ public class Util {
      */  
     public static byte[] hexStringToBytes(String hexString)   
     {  
-        if (hexString == null || hexString.equals(""))   
+        if (hexString == null || ("").equals(hexString))
         {  
             return null;  
         }  
@@ -446,7 +449,9 @@ public class Util {
                 break;  
             case 'F':  
                 result += "1111";  
-                break;  
+                break;
+                default:
+                    result +="0001";
             }  
         }  
         return result;  

@@ -336,11 +336,15 @@ public class HttpClientUtil {
         };
         //这个好像是HOST验证
         X509HostnameVerifier hostnameVerifier = new X509HostnameVerifier() {
+            @Override
             public boolean verify(String arg0, SSLSession arg1) {
                 return true;
             }
+            @Override
             public void verify(String arg0, SSLSocket arg1) throws IOException {}
+            @Override
             public void verify(String arg0, String[] arg1, String[] arg2) throws SSLException {}
+            @Override
             public void verify(String arg0, X509Certificate arg1) throws SSLException {}
         };
         try {
