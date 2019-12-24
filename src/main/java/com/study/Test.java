@@ -40,5 +40,17 @@ public class Test {
             e.printStackTrace();
         }
 
+        Integer totalCount = 9;
+        int i =0;
+        if(totalCount%10==0){
+            //说明整除，正好每页显示pageSize条数据，没有多余一页要显示少于pageSize条数据的
+            i = totalCount / 10;
+        }else{
+            //不整除，就要在加一页，来显示多余的数据。
+            i= totalCount / 10 +1;
+        }
+        for(int j=1;j<=i;j++){
+            System.out.println(j);
+        }
     }
 }

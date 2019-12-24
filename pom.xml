@@ -126,12 +126,11 @@
       <!--<version>5.0.0.Alpha2</version>-->
     <!--</dependency>-->
 
-    <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
-    <!--<dependency>-->
-      <!--<groupId>io.netty</groupId>-->
-      <!--<artifactId>netty-all</artifactId>-->
-      <!--<version>4.1.36.Final</version>-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-all</artifactId>
+      <version>4.1.36.Final</version>
+    </dependency>
 
     <dependency>
       <groupId>io.springfox</groupId>
@@ -143,6 +142,14 @@
       <artifactId>springfox-swagger-ui</artifactId>
       <version>2.9.2</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.8</version>
+      <!--<scope>provided</scope>-->
+    </dependency>
+
 
     <!--<dependency>-->
       <!--<groupId>com.spring4all</groupId>-->
@@ -193,6 +200,22 @@
       <artifactId>hystrix-core</artifactId>
       <version>1.5.12</version>
     </dependency>
+
+    <!-- 序列化 -->
+    <!--hessian-->
+    <dependency>
+      <groupId>com.caucho</groupId>
+      <artifactId>hessian</artifactId>
+      <version>4.0.38</version>
+    </dependency>
+
+    <!--XML序列化-->
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+      <version>1.4.9</version>
+    </dependency>
+
   </dependencies>
 
   <build>
