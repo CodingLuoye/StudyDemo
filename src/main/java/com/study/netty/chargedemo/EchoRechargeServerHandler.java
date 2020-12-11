@@ -1,4 +1,4 @@
-package com.study.netty;
+package com.study.netty.chargedemo;
 
 import com.study.netty.xml.XMLRequest;
 import com.study.netty.xml.XMLResponse;

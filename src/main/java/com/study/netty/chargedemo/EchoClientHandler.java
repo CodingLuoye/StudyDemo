@@ -1,4 +1,4 @@
-package com.study.netty;
+package com.study.netty.chargedemo;
 
 import com.alibaba.fastjson.JSON;
 import com.study.socket.SocketResponse;

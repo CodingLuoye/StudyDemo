@@ -15,7 +15,7 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath:jdbc.properties</value>
+                <value>classpath:application.properties</value>
             </list>
         </property>
         <property name="ignoreUnresolvablePlaceholders" value="true" />
@@ -97,6 +97,5 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
         <property name="queueCapacity" value="25"></property>
         <property name="threadNamePrefix" value="CoreTaskExecutor"></property>
     </bean>
-
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 </beans>

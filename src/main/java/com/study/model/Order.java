@@ -1,8 +1,11 @@
 package com.study.model;
+
+import java.io.Serializable;
+
 /**
  * @author YCKJ1409
  */
-public class Order {
+public class Order implements Serializable {
     private Long id;
 
     private String name;
@@ -51,5 +54,16 @@ public class Order {
 
     public void setCreateBy(String createBy) {
         this.createBy = createBy;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", content='" + content + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", createBy='" + createBy + '\'' +
+                '}';
     }
 }

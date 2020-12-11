@@ -5,12 +5,18 @@ import java.util.Scanner;
  */
 public class Test {
     public static void main(String []args){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("input:");
-        int a = sc.nextInt();
-        int result = reverse(a);
-        System.out.println("output:\n"+result);
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("input:");
+//        int a = sc.nextInt();
+//        int result = reverse(a);
+//        System.out.println("output:\n"+result);
+        Integer integer = getRemailDay(Long.valueOf("1591777308000"));
+        System.out.println(integer);
+    }
 
+    public static Integer getRemailDay(Long expireTime) {
+        Long  difference =  (expireTime-System.currentTimeMillis())/86400000;
+        return Math.abs(difference.intValue());
     }
 
     /**

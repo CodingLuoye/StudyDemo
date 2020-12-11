@@ -33,4 +33,32 @@ public class HelloController {
         return "Hello " + name;
     }
 
+    class Name{
+        String name;
+
+        String idCard;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getIdCard() {
+            return idCard;
+        }
+
+        public void setIdCard(String idCard) {
+            this.idCard = idCard;
+        }
+    }
+
+    @GetMapping("/testReceivce")
+    @ApiOperation("测试接受")
+    public void testReceivce(Name name){
+        System.out.println(name);
+    }
+
 }

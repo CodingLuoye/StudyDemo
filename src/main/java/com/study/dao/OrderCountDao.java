@@ -10,4 +10,5 @@ public interface OrderCountDao {
 
     int update(OrderCount order);
 
+    Integer insert(OrderCount orderCount);
 }

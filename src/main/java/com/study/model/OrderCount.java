@@ -1,8 +1,11 @@
 package com.study.model;
+
+import java.io.Serializable;
+
 /**
  * @author YCKJ1409
  */
-public class OrderCount {
+public class OrderCount implements Serializable {
     private Long id;
 
     private int count;
@@ -21,5 +24,13 @@ public class OrderCount {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderCount{" +
+                "id=" + id +
+                ", count=" + count +
+                '}';
     }
 }

@@ -1,4 +1,4 @@
-package com.study.netty;
+package com.study.netty.chargedemo;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -13,11 +13,9 @@ import io.netty.handler.codec.string.StringEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.nio.charset.Charset;
 import java.util.concurrent.*;
 
@@ -69,7 +67,7 @@ public class EchoRechargeServer implements InitializingBean {
 
     @Override
     public void afterPropertiesSet(){
-        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("Socket-server-%d").build();
+        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("SocketTest-server-%d").build();
         ExecutorService executorService = new ThreadPoolExecutor(1,1,0L, TimeUnit.SECONDS,
                 new LinkedBlockingQueue<Runnable>(5),threadFactory);
         executorService.execute((new Runnable() {

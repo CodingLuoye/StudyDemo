@@ -1,7 +1,4 @@
 package com.study.zk.lock;
-
-import groovy.transform.Synchronized;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

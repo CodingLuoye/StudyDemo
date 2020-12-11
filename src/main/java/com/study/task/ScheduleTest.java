@@ -43,7 +43,7 @@ public class ScheduleTest {
                     System.out.println("end ********"+System.currentTimeMillis());
                     throw new RuntimeException("报错了");
                 } catch (Throwable e) {
-                    System.out.println("error");
+                    System.out.println("error2");
                 }
             }
         },1,1, TimeUnit.SECONDS);

@@ -1,10 +1,11 @@
 package com.study.model;
 
+import java.io.Serializable;
 import java.util.Date;
 /**
  * @author YCKJ1409
  */
-public class OrderExp {
+public class OrderExp implements Serializable {
 
     private Long id;
 
