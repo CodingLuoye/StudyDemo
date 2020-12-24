@@ -11,8 +11,8 @@ public class ThreadTest {
         logger.info("---");
         ThreadFactory threadFactory = new ThreadFactoryBuilder()
                 .setNameFormat("test")
-                .setUncaughtExceptionHandler((thread,throwable)-> logger.info("ThreadPool {} got exception"+thread.getName(),
-                        throwable))
+                .setUncaughtExceptionHandler((thread,throwable)-> logger.info("ThreadPool "  + thread.getName() +" " +
+                                "got exception", throwable))
                 .build();
         ExecutorService executorService = new ThreadPoolExecutor(5, 5, 0, TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>(1024), threadFactory);

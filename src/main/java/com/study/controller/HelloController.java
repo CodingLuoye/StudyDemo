@@ -15,7 +15,18 @@ public class HelloController {
         return "Hello world";
     }
 
-    @RequestMapping("/hello1")
+
+    @RequestMapping("/hello/{appId:.+}")
+    public String hello2(@PathVariable("appId") String appId){
+        return "Hello2 world" + appId;
+    }
+
+    @RequestMapping("/hello/{appId}/name")
+    public String hello3(@PathVariable("appId") String appId){
+        return "Hello3 world" + appId;
+    }
+
+   @RequestMapping("/hello1")
     public String hello() throws Exception {
         throw new Exception("发⽣错误");
     }
