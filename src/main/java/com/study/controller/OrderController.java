@@ -87,11 +87,9 @@ public class OrderController {
         order.setName("xxx");
         order.setContent("xxx您已消费多少钱");
         order.setCreateBy("chen");
-        order.setCreateTime("2019-08-30");
+        order.setCreateTime("2026-08-30");
 //        orderDao.insert(order);
-
         context.publishEvent(order);
-        return;
     }
 
     @RequestMapping("/testCount")

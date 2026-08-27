@@ -28,9 +28,10 @@ public class TomcatDemo {
         if(context instanceof StandardContext){
             StandardContext standardContext = (StandardContext) context;
             String webXmlPath = classPath + "src\\main\\java\\com\\study\\tomcat\\web.xml";
+//            String webXmlPath = "/Users/eleme/IdeaProjects/StudyDemo/src/main/java/com/study/tomcat/web.xml";
             standardContext.setDefaultContextXml(webXmlPath);
 //            Wrapper wrapper = tomcat.addServlet("/","demoServlet",new DemoServlet());
-//            wrapper.addMapping("/Test");
+//            wrapper.addMapping("/test");
         }
         // tomcat 跑起来
         tomcat.start();

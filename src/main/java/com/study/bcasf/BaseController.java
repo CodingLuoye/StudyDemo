@@ -3,9 +3,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
+import java.util.Base64;
 import java.util.Random;
 
 @RestController
@@ -19,7 +18,6 @@ public class BaseController {
     public ResponseData<SignResponse> sign(@RequestParam String sn){
         try{
             String key = "6B6F6D6F334C64364554696B46766F6E";
-            BASE64Encoder encoder = new BASE64Encoder();
             SM4_Context sm4_context2 = new SM4_Context();
             byte[] iv2 = new byte[16];
             for (int i =0;i<16;i++){
@@ -28,7 +26,7 @@ public class BaseController {
             SM4 sm42 = new SM4();
             sm42.sm4_setkey_enc(sm4_context2,Util.hexStringToBytes(key));
             byte[] crypt_cbc = sm42.sm4_crypt_cbc(sm4_context2,iv2,"ABCDABCDABCDABCDABCDABCDABCDABCD".getBytes());
-            String jsonData = encoder.encodeBuffer(crypt_cbc);
+            String jsonData = Base64.getEncoder().encodeToString(crypt_cbc);
             SignResponse signResponse = new SignResponse();
             signResponse.setMerchId("104110045258623");
             signResponse.setTerminalId("11008623");
@@ -46,15 +44,13 @@ public class BaseController {
     @RequestMapping("/bcasf/zn/v1/faceScanPurchase.do")
     public ResponseData<FacePayResp> faceScan(@RequestParam String sn, @RequestBody String data){
         JSONObject json = JSON.parseObject(data);
-        BASE64Decoder decoder = new BASE64Decoder();
-        BASE64Encoder encoder = new BASE64Encoder();
         ResponseData responseData = null;
         Random random = new Random();
         String jsonData= "";
         try {
             String key = "ABCDABCDABCDABCDABCDABCDABCDABCD";
             SM4_Context sm4_context = new SM4_Context();
-            byte[] bytes = decoder.decodeBuffer(json.get("data").toString());
+            byte[] bytes = Base64.getDecoder().decode(json.get("data").toString());
             byte[] iv = new byte[16];
             for (int i =0;i<16;i++){
                 iv[i] = 48;
@@ -96,7 +92,7 @@ public class BaseController {
             SM4 sm42 = new SM4();
             sm42.sm4_setkey_enc(sm4_context2,Util.hexStringToBytes(key));
             byte[] crypt_cbc = sm42.sm4_crypt_cbc(sm4_context2,iv2,str.getBytes());
-            jsonData = encoder.encodeBuffer(crypt_cbc);
+            jsonData = Base64.getEncoder().encodeToString(crypt_cbc);
             if(randomNumber>2){
                 responseData = new ResponseData("0000","SUCCESS",jsonData);
             }else{
@@ -110,9 +106,7 @@ public class BaseController {
 
     public static void main(String[] args) {
         try{
-            BASE64Decoder decoder = new BASE64Decoder();
             String key = "6B6F6D6F334C64364554696B46766F6E";
-            BASE64Encoder encoder = new BASE64Encoder();
             SM4_Context sm4_context2 = new SM4_Context();
             byte[] iv2 = new byte[16];
             for (int i =0;i<16;i++){
@@ -121,7 +115,7 @@ public class BaseController {
             SM4 sm42 = new SM4();
             sm42.sm4_setkey_enc(sm4_context2,Util.hexStringToBytes(key));
             byte[] crypt_cbc = sm42.sm4_crypt_cbc(sm4_context2,iv2,"ABCDABCDABCDABCDABCDABCDABCDABCD".getBytes());
-            String jsonData = encoder.encodeBuffer(crypt_cbc);
+            String jsonData = Base64.getEncoder().encodeToString(crypt_cbc);
             String content = new String(jsonData);
             System.out.println(new String(content));
             System.out.println(new String(content).length());
@@ -134,8 +128,6 @@ public class BaseController {
     @RequestMapping("/bcasf/zn/v1/faceScanReversal.do")
     public ResponseData<ReversqlResp> reversal(@RequestParam String sn, @RequestBody String data){
         JSONObject json = JSON.parseObject(data);
-        BASE64Decoder decoder = new BASE64Decoder();
-        BASE64Encoder encoder = new BASE64Encoder();
         ResponseData responseData = null;
         Random random = new Random();
         String jsonData= "";
@@ -145,7 +137,7 @@ public class BaseController {
             }
             String key = "ABCDABCDABCDABCDABCDABCDABCDABCD";
             SM4_Context sm4_context = new SM4_Context();
-            byte[] bytes = decoder.decodeBuffer(json.get("data").toString());
+            byte[] bytes = Base64.getDecoder().decode(json.get("data").toString());
             byte[] iv = new byte[16];
             for (int i =0;i<16;i++){
                 iv[i] = 48;
@@ -184,7 +176,7 @@ public class BaseController {
             SM4 sm42 = new SM4();
             sm42.sm4_setkey_enc(sm4_context2,Util.hexStringToBytes(key));
             byte[] crypt_cbc = sm42.sm4_crypt_cbc(sm4_context2,iv2,str.getBytes());
-            jsonData = encoder.encodeBuffer(crypt_cbc);
+            jsonData = Base64.getEncoder().encodeToString(crypt_cbc);
             if(random.nextInt(10)>5){
                 responseData = new ResponseData("0000","SUCCESS",jsonData);
             }else{
@@ -202,15 +194,13 @@ public class BaseController {
     @RequestMapping("/bcasf/zn/v1/faceScanDiscern.do")
     public ResponseData<FacePayResp> faceScanDiscern(@RequestParam String sn, @RequestBody String data){
         JSONObject json = JSON.parseObject(data);
-        BASE64Decoder decoder = new BASE64Decoder();
-        BASE64Encoder encoder = new BASE64Encoder();
         Random random = new Random();
         ResponseData responseData = null;
         String jsonData= "";
         try {
             String key = "ABCDABCDABCDABCDABCDABCDABCDABCD";
             SM4_Context sm4_context = new SM4_Context();
-            byte[] bytes = decoder.decodeBuffer(json.get("data").toString());
+            byte[] bytes = Base64.getDecoder().decode(json.get("data").toString());
             byte[] iv = new byte[16];
             for (int i =0;i<16;i++){
                 iv[i] = 48;
@@ -242,7 +232,7 @@ public class BaseController {
             SM4 sm42 = new SM4();
             sm42.sm4_setkey_enc(sm4_context2,Util.hexStringToBytes(key));
             byte[] crypt_cbc = sm42.sm4_crypt_cbc(sm4_context2,iv2,str.getBytes());
-            jsonData = encoder.encodeBuffer(crypt_cbc);
+            jsonData = Base64.getEncoder().encodeToString(crypt_cbc);
             if(random.nextInt(10)>5){
                 responseData = new ResponseData("0000","SUCCESS",jsonData);
             }else{
